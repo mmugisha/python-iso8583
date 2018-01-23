@@ -134,7 +134,7 @@ class ISO8583:
     _BITS_VALUE_TYPE[45] = ['45', 'Track 1 data', 'LL', 76, 'an']
     _BITS_VALUE_TYPE[46] = ['46', 'Amounts fees', 'LLL', 999, 'an']
     _BITS_VALUE_TYPE[47] = ['47', 'Additional data national', 'LLL', 999, 'an']
-    _BITS_VALUE_TYPE[48] = ['48', 'Additional data private', 'LLL', 999, 'an']
+    _BITS_VALUE_TYPE[48] = ['48', 'Additional data private', 'LLLL', 9999, 'ans']
     _BITS_VALUE_TYPE[49] = ['49', 'Verification data', 'A', 3, 'a']
     _BITS_VALUE_TYPE[50] = ['50', 'Currency code, settlement', 'AN', 3, 'an']
     _BITS_VALUE_TYPE[51] = ['51', 'Currency code, cardholder billing', 'A', 3, 'a']
