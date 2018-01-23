@@ -997,12 +997,21 @@ class ISO8583:
 
                     offset += valueSize + 3
 
-                # if self.getBitType(cont) == 'LLLL':
-                # valueSize = int(strWithoutMtiBitmap[offset:offset +4])
-                # if valueSize > self.getBitLimit(cont):
-                # raise ValueToLarge("This bit is larger than the especification!")
-                # self.BITMAP_VALUES[cont] = '(' + strWithoutMtiBitmap[offset:offset+4] + ')' + strWithoutMtiBitmap[offset+4:offset+4+valueSize]
-                # offset += valueSize + 4
+                if self.getBitType(cont) == 'LLLL':
+                    valueSize = int(strWithoutMtiBitmap[offset:offset + 4])
+                    if self.DEBUG == True:
+                        print('Size of the message in LLLL = %s' % valueSize)
+                    if valueSize > self.getBitLimit(cont):
+                        raise ValueToLarge(
+                            "This bit is larger than the especification!")
+                    self.BITMAP_VALUES[cont] = '(' + strWithoutMtiBitmap[
+                                                     offset:offset + 4] + ')' + strWithoutMtiBitmap[
+                                                                                offset + 4:offset + 4 + valueSize]
+
+                    if self.DEBUG == True:
+                        print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
+
+                    offset += valueSize + 4
 
                 if self.getBitType(cont) == 'N' or self.getBitType(cont) == 'A' or self.getBitType(
                         cont) == 'ANS' or self.getBitType(cont) == 'B' or self.getBitType(cont) == 'AN':
