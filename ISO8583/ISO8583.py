@@ -116,7 +116,7 @@ class ISO8583:
     _BITS_VALUE_TYPE[27] = ['27', 'Point of service capability', 'N', 1, 'n']
     _BITS_VALUE_TYPE[28] = ['28', 'Date reconciliation', 'N', 8, 'n']
     _BITS_VALUE_TYPE[29] = ['29', 'Reconciliation indicator', 'N', 8, 'n']
-    _BITS_VALUE_TYPE[30] = ['30', 'Amounts original', 'N', 8, 'n']
+    _BITS_VALUE_TYPE[30] = ['30', 'Amounts original', 'N', 9, 'n']
     _BITS_VALUE_TYPE[31] = ['31', 'Acquirer reference number', 'N', 8, 'n']
     _BITS_VALUE_TYPE[32] = ['32', 'Acquiring institution identification code', 'LL', 11, 'n']
     _BITS_VALUE_TYPE[33] = ['33', 'Forwarding institution identification code', 'LL', 11, 'n']
