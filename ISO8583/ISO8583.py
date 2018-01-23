@@ -641,6 +641,34 @@ class ISO8583:
     ################################################################################################
 
     ################################################################################################
+    # Set of type LLLL
+    def __setBitTypeLLL(self, bit, value):
+        """Method that set a bit with value in form LLLL
+        It put the size in front of the value
+        Example: pack.setBit(0014,'12345ABCD67890') -> Bit 0014 is a LLLL type, so this bit, in ASCII form need to be 001412345ABCD67890.
+            To understand, 0014 is the size of the information and 12345ABCD67890 is the information/value
+        @param: bit -> bit to be setted
+        @param: value -> value to be setted
+        @raise: ValueToLarge Exception
+        It's a internal method, so don't call!
+        """
+
+        value = "%s" % value
+
+        if len(value) > 9999:
+            raise ValueToLarge('Error: value up to size! Bit[%s] of type %s limit size = %s' % (
+            bit, self.getBitType(bit), self.getBitLimit(bit)))
+        if len(value) > self.getBitLimit(bit):
+            raise ValueToLarge('Error: value up to size! Bit[%s] of type %s limit size = %s' % (
+            bit, self.getBitType(bit), self.getBitLimit(bit)))
+
+        size = "%s" % len(value)
+
+        self.BITMAP_VALUES[bit] = "%s%s" % (size.zfill(4), value)
+
+    ################################################################################################
+
+    ################################################################################################
     # Set of type N,
     def __setBitTypeN(self, bit, value):
         """Method that set a bit with value in form N
