@@ -973,8 +973,7 @@ class ISO8583:
                         print('This bit is larger thant the specification.')
                         # raise ValueToLarge("This bit is larger than the especification!")
 
-                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset:offset + 2] + strWithoutMtiBitmap[
-                                                                                        offset + 2:offset + 2 + valueSize]
+                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset + 2:offset + 2 + valueSize]
 
                     if self.DEBUG == True:
                         print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
@@ -992,8 +991,7 @@ class ISO8583:
 
                     if valueSize > self.getBitLimit(cont):
                         raise ValueToLarge("This bit is larger than the especification!")
-                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset:offset + 3] + strWithoutMtiBitmap[
-                                                                                        offset + 3:offset + 3 + valueSize]
+                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset + 3:offset + 3 + valueSize]
 
                     if self.DEBUG == True:
                         print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
@@ -1007,9 +1005,7 @@ class ISO8583:
                     if valueSize > self.getBitLimit(cont):
                         raise ValueToLarge(
                             "This bit is larger than the especification!")
-                    self.BITMAP_VALUES[cont] = '(' + strWithoutMtiBitmap[
-                                                     offset:offset + 4] + ')' + strWithoutMtiBitmap[
-                                                                                offset + 4:offset + 4 + valueSize]
+                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset + 4:offset + 4 + valueSize]
 
                     if self.DEBUG == True:
                         print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
