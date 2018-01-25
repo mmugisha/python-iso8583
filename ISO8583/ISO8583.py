@@ -387,6 +387,9 @@ class ISO8583:
         if self.getBitType(bit) == 'LLL':
             self.__setBitTypeLLL(bit, value)
 
+        if self.getBitType(bit) == 'LLLL':
+            self.__setBitTypeLLLL(bit, value)
+
         if self.getBitType(bit) == 'N':
             self.__setBitTypeN(bit, value)
 
@@ -642,7 +645,7 @@ class ISO8583:
 
     ################################################################################################
     # Set of type LLLL
-    def __setBitTypeLLL(self, bit, value):
+    def __setBitTypeLLLL(self, bit, value):
         """Method that set a bit with value in form LLLL
         It put the size in front of the value
         Example: pack.setBit(0014,'12345ABCD67890') -> Bit 0014 is a LLLL type, so this bit, in ASCII form need to be 001412345ABCD67890.
