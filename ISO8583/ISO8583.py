@@ -964,53 +964,34 @@ class ISO8583:
                 if self.DEBUG == True:
                     print('String = %s offset = %s bit = %s' % (strWithoutMtiBitmap[offset:], offset, cont))
 
-                if self.getBitType(cont) == 'LL':
-                    valueSize = int(strWithoutMtiBitmap[offset:offset + 2])
+                if self.getBitType(cont) in ['LL', 'LLL', 'LLLL']:
+                    if self.getBitType(cont) == 'LL':
+                        size = 2
+
+                    if self.getBitType(cont) == 'LLL':
+                        size = 3
+
+                    if self.getBitType(cont) == 'LLLL':
+                        size = 4
+
+                    valueSize = int(strWithoutMtiBitmap[offset:offset + size])
                     if self.DEBUG == True:
-                        print('Size of the message in LL = %s' % valueSize)
+                        print(
+                        'Size of the message in self.getBitType(cont) = %s' % valueSize)
 
                     if valueSize > self.getBitLimit(cont):
                         print('This bit is larger thant the specification.')
-                        # raise ValueToLarge("This bit is larger than the especification!")
-
-                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset + 2:offset + 2 + valueSize]
-
-                    if self.DEBUG == True:
-                        print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
-
-                    # fix for AppZone - their responses don't comply with specifications
-                    if cont == 33:
-                        offset += valueSize + 2  # replace with 17 if it fails
-                    else:
-                        offset += valueSize + 2
-
-                if self.getBitType(cont) == 'LLL':
-                    valueSize = int(strWithoutMtiBitmap[offset:offset + 3])
-                    if self.DEBUG == True:
-                        print('Size of the message in LLL = %s' % valueSize)
-
-                    if valueSize > self.getBitLimit(cont):
-                        raise ValueToLarge("This bit is larger than the especification!")
-                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset + 3:offset + 3 + valueSize]
-
-                    if self.DEBUG == True:
-                        print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
-
-                    offset += valueSize + 3
-
-                if self.getBitType(cont) == 'LLLL':
-                    valueSize = int(strWithoutMtiBitmap[offset:offset + 4])
-                    if self.DEBUG == True:
-                        print('Size of the message in LLLL = %s' % valueSize)
-                    if valueSize > self.getBitLimit(cont):
                         raise ValueToLarge(
                             "This bit is larger than the especification!")
-                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[offset + 4:offset + 4 + valueSize]
+
+                    self.BITMAP_VALUES[cont] = strWithoutMtiBitmap[
+                                               offset + size: offset + size + valueSize]
 
                     if self.DEBUG == True:
-                        print('\tSetting bit %s value %s' % (cont, self.BITMAP_VALUES[cont]))
+                        print('\tSetting bit %s value %s' % (
+                        cont, self.BITMAP_VALUES[cont]))
 
-                    offset += valueSize + 4
+                    offset += valueSize + size
 
                 if self.getBitType(cont) == 'N' or self.getBitType(cont) == 'A' or self.getBitType(
                         cont) == 'ANS' or self.getBitType(cont) == 'B' or self.getBitType(cont) == 'AN':
