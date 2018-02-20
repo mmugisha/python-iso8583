@@ -2,13 +2,13 @@
 
 from distutils.core import setup
 
-setup(name='ISO8583-Module',
-		version='1.3',
-		description='ISO8583 LIBRARY',
-		author='Igor V. Custodio',
-		author_email='igorvc@vulcanno.com.br',
-		url='http://www.vulcanno.com.br/python',
-		download_url='http://code.google.com/p/iso8583py/downloads/list',
+setup(name='angaza-iso8583',
+		version='1.0',
+		description='ISO8583 LIBRARY for Airtel Kenya format',
+		author='Igor V. Custodio, Mugisha Mushoja',
+		author_email='igorvc@vulcanno.com.br, mmugisha@angazadesign.com',
+		url='',
+        download_url='://github.com/angaza/python-iso8583-airtel-ke',
 		packages=['ISO8583'],
 		classifiers=[
 		'Development Status :: 5 - Production/Stable',

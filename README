@@ -14,7 +14,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ========================================================================
-
+This is a fork of the the original package ISO8583-Module by
+Igor V. Custodio that adds support for non standard LLLL
+========================================================================
 *) To install information, read INSTALL DOC
 
 
